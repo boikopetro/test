@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
+import Counter from "./components/Counter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [value, setValue] = useState("enter value")
+
+    return (
+        <div className="App">
+            <Counter/>
+            <h2>{value}</h2>
+            <input type='text' value={value} onChange={(e) => setValue(e.target.value)}/>
+        </div>
+    );
 }
 
 export default App;
