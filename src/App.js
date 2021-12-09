@@ -1,15 +1,27 @@
+import './styles/App.css'
 import {useState} from "react";
-import Counter from "./components/Counter";
+import PostsList from "./components/PostsList";
+import MyButton from "./components/UI/button/MyButton";
 
 function App() {
-    const [value, setValue] = useState("enter value")
 
+    const [posts, setPost] = useState(
+        [
+            {postId: 1, title: 'js', body: 'text'},
+            {postId: 2, title: 'react', body: 'text text'},
+            {postId: 3, title: 'redux', body: 'text text text'},
+        ]
+    )
     return (
-        <div className="App">
-            <Counter/>
-            <h2>{value}</h2>
-            <input type='text' value={value} onChange={(e) => setValue(e.target.value)}/>
+        <div>
+            <form>
+                <input type='text' placeholder='Post name'/>
+                <input type='text' placeholder='Post description'/>
+                <MyButton title='create post'/>
+            </form>
+            <PostsList posts={posts} title='List 1'/>
         </div>
+
     );
 }
 
