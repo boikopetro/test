@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
 import Post from "./Post";
 
-const PostsList = ({posts, title}) => {
+const PostsList = ({posts, title, remove}) => {
     return (
         <div className="App">
             <h1 style={{textAlign: 'center'}}>{title}</h1>
-            {posts.map(p => <Post key={p.postId} post={p}/>)}
+            {
+                posts.map((p, i) =>
+                    <Post remove={remove} key={p.id} post={p} number={i + 1}/>)
+            }
         </div>
     );
 };

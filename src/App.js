@@ -1,27 +1,28 @@
 import './styles/App.css'
 import {useState} from "react";
 import PostsList from "./components/PostsList";
-import MyButton from "./components/UI/button/MyButton";
+import PostForm from "./components/UI/PostForm";
 
 function App() {
+    const [posts, setPosts] = useState([])
 
-    const [posts, setPost] = useState(
-        [
-            {postId: 1, title: 'js', body: 'text'},
-            {postId: 2, title: 'react', body: 'text text'},
-            {postId: 3, title: 'redux', body: 'text text text'},
-        ]
-    )
+    const createPost = (newPost) => {
+        setPosts([...posts, newPost])
+    }
+
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
+    }
+
     return (
         <div>
-            <form>
-                <input type='text' placeholder='Post name'/>
-                <input type='text' placeholder='Post description'/>
-                <MyButton title='create post'/>
-            </form>
-            <PostsList posts={posts} title='List 1'/>
+            <PostForm create={createPost}/>
+            {
+                posts.length
+                    ? <PostsList remove={removePost} posts={posts} title='List 1'/>
+                    : <h1 style={{textAlign: 'center'}}>no posts</h1>
+            }
         </div>
-
     );
 }
 
